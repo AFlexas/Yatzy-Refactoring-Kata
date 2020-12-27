@@ -8,6 +8,7 @@ def test_chance_scores_sum_of_all_dice():
         actual = Yatzy.chance(2,3,4,5,1)
         assert expected == actual
         assert 16 == Yatzy.chance(3,3,4,5,1)
+        # assert 37 == Yatzy.chance(5,5,2,8,4,4,2,3,3,1)
   
 
 def test_yatzy_scores_50():

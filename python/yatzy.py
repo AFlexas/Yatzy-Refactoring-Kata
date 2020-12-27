@@ -1,71 +1,58 @@
 class Yatzy:
 
     @staticmethod
-    def chance(d1, d2, d3, d4, d5):
-        total = 0
-        total += d1
-        total += d2
-        total += d3
-        total += d4
-        total += d5
-        return total
+    def chance(*dado):
+        # PONIENDO EL * PERMITE LA ENTRADA DE TODOS LOS ELEMENTOS QUE VENGAN DE INPUT
+        # total = 0
+        # total += d1
+        # total += d2
+        # total += d3
+        # total += d4
+        # total += d5   
+        return sum(dado)
 
     @staticmethod
-    def yatzy(dice):
-        counts = [0]*(len(dice)+1)
-        for die in dice:
-            counts[die-1] += 1
-        for i in range(len(counts)):
-            if counts[i] == 5:
+    def yatzy(*all_dice):
+        for die in all_dice:
+            if die == die:
                 return 50
-        return 0
-    
-    @staticmethod
-    def ones( d1,  d2,  d3,  d4,  d5):
-        sum = 0
-        if (d1 == 1):
-            sum += 1
-        if (d2 == 1):
-            sum += 1
-        if (d3 == 1):
-            sum += 1
-        if (d4 == 1):
-            sum += 1
-        if (d5 == 1): 
-            sum += 1
+        else:
+            pass
 
-        return sum
+        # counts = [0]*(len(dice)+1)
+        # for die in dice:
+        #     counts[die-1] += 1
+        # for i in range(len(counts)):
+        #     if counts[i] == 5:
+        #         return 50
+        # return 0
+    
+    @staticmethod
+    def ones(*searching_one):
+        sum_of_ones = 0
+        for ones in searching_one:
+            if ones == 1:
+                sum_of_ones = sum_of_ones + 1
+            else:
+                pass
+        return sum_of_ones
     
 
     @staticmethod
-    def twos( d1,  d2,  d3,  d4,  d5):
-        sum = 0
-        if (d1 == 2):
-             sum += 2
-        if (d2 == 2):
-             sum += 2
-        if (d3 == 2):
-             sum += 2
-        if (d4 == 2):
-             sum += 2
-        if (d5 == 2):
-             sum += 2
-        return sum
+    def twos(*searching_two):
+        sum_of_twos = 0
+        for twos in searching_two:
+            if twos == 2:
+                sum_of_twos = sum_of_twos + 2
+        return sum_of_twos
     
     @staticmethod
-    def threes( d1,  d2,  d3,  d4,  d5):
-        s = 0
-        if (d1 == 3):
-             s += 3
-        if (d2 == 3):
-             s += 3
-        if (d3 == 3):
-             s += 3
-        if (d4 == 3):
-             s += 3
-        if (d5 == 3):
-             s += 3
-        return s
+    def threes(*searching_three):
+        sum_of_three = 0
+        for threes in searching_three:
+            if threes == 3:
+                sum_of_three = sum_of_three + 3
+        return sum_of_three
     
 
     def __init__(self, d1, d2, d3, d4, _5):
