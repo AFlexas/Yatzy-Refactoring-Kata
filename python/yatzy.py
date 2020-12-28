@@ -12,20 +12,16 @@ class Yatzy:
         return sum(dado)
 
     @staticmethod
-    def yatzy(*all_dice):
-        for die in all_dice:
-            if die == die:
+    def yatzy(dice):
+        counts = [0]*(len(dice)+1)
+        for die in dice:
+            counts[die-1] += 1
+        for i in range(len(counts)):
+            if counts[i] == (len(dice)):
                 return 50
-        else:
-            pass
+        return 0
+    # en este refactor simplemente he cambiado la linea 20 en vez de "if counts[i] == 5", si se pone eso solo se aplicaria sobre un yatzy de 5
 
-        # counts = [0]*(len(dice)+1)
-        # for die in dice:
-        #     counts[die-1] += 1
-        # for i in range(len(counts)):
-        #     if counts[i] == 5:
-        #         return 50
-        # return 0
     
     @staticmethod
     def ones(*searching_one):
@@ -63,6 +59,7 @@ class Yatzy:
         self.dice[3] = d4
         self.dice[4] = _5
     
+
     def fours(self):
         sum = 0
         for at in range(5):
@@ -88,13 +85,14 @@ class Yatzy:
         return sum
     
     @staticmethod
-    def score_pair( d1,  d2,  d3,  d4,  d5):
+    def score_pair(*dados):
         counts = [0]*6
-        counts[d1-1] += 1
-        counts[d2-1] += 1
-        counts[d3-1] += 1
-        counts[d4-1] += 1
-        counts[d5-1] += 1
+        for caras in dados:
+            counts[caras-1] += 1
+        # counts[d2-1] += 1
+        # counts[d3-1] += 1
+        # counts[d4-1] += 1
+        # counts[d5-1] += 1
         at = 0
         for at in range(6):
             if (counts[6-at-1] == 2):
