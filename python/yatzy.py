@@ -13,10 +13,10 @@ class Yatzy:
 
     @staticmethod
     def yatzy(dice):
-        counts = [0]*(len(dice)+1) # es lo mismo que poner [0]*6 pero como COÑO HAGO QUE NO SE LIMITE A DADOS DE SOLO 6 
+        counts = [0]*(max(dice)) # es lo mismo que poner [0]*6 pero como COÑO HAGO QUE NO SE LIMITE A DADOS DE SOLO 6 
         for die in dice:
             counts[die-1] += 1
-        for i in range(len(counts)):
+        for i in range(max(dice)):
             if counts[i] == (len(dice)):
                 return 50
         return 0
@@ -86,7 +86,7 @@ class Yatzy:
     
     @staticmethod
     def score_pair(*caras):
-        counts = [0]*max(valor)
+        counts = [0]*(max(caras))
         for valor in caras:
             counts[valor-1] += 1
         # counts[d2-1] += 1
@@ -94,60 +94,64 @@ class Yatzy:
         # counts[d4-1] += 1
         # counts[d5-1] += 1
         at = 0
-        for at in range(8):
-            if (counts[8-at-1] == 2):
-                return (8-at)*2
+        for at in range(max(caras)):
+            if (counts[(max(caras))-at-1] == 2):
+                return ((max(caras))-at)*2
         return 0
         # Aqui simplemente he cambiado uno a dados para que no sea limitado, pero no acabo de entender como funciona, tiene que haber una mejor manera
         # o almenos mas bonita
     
     @staticmethod
-    def two_pair( d1,  d2,  d3,  d4,  d5):
-        counts = [0]*6
-        counts[d1-1] += 1
-        counts[d2-1] += 1
-        counts[d3-1] += 1
-        counts[d4-1] += 1
-        counts[d5-1] += 1
+    def two_pair(*caras):
+        counts = [0]*(max(caras))
+        for valor in caras:
+            counts[valor-1] += 1
+        # counts[d2-1] += 1
+        # counts[d3-1] += 1
+        # counts[d4-1] += 1
+        # counts[d5-1] += 1
         n = 0
         score = 0
-        for i in range(6):
-            if (counts[6-i-1] >= 2):
+        for i in range(max(caras)):
+            if (counts[(max(caras))-i-1] >= 2):
                 n = n+1
-                score += (6-i)
+                score += (max(caras)-i)
                     
         if (n == 2):
             return score * 2
         else:
             return 0
-    
+    # Tengo una disputa filosofica aqui, si hay mas de dos parejas esto peta, no que como hacerlo
     @staticmethod
     def four_of_a_kind(*dado):
-        tallies = [0]*6
+        tallies = [0]*(max(dado))
         for caras in dado:
             tallies[caras-1] += 1
         # tallies[_2-1] += 1
         # tallies[d3-1] += 1
         # tallies[d4-1] += 1
         # tallies[d5-1] += 1
-        for i in range(6):
+        for i in range(max(dado)):
             if (tallies[i] >= 4):
                 return (i+1) * 4
         return 0
     
 
     @staticmethod
-    def three_of_a_kind( d1,  d2,  d3,  d4,  d5):
-        t = [0]*6
-        t[d1-1] += 1
-        t[d2-1] += 1
-        t[d3-1] += 1
-        t[d4-1] += 1
-        t[d5-1] += 1
-        for i in range(6):
+    def three_of_a_kind(*dados):
+        t = [0]*(max(dados))
+        for valor in dados:
+
+            t[valor-1] += 1
+        # t[d2-1] += 1
+        # t[d3-1] += 1
+        # t[d4-1] += 1
+        # t[d5-1] += 1
+        for i in range(max(dados)):
             if (t[i] >= 3):
                 return (i+1) * 3
         return 0
+        # refactorizar los nombres de las variables, también por ejemplo la t de esta función
     
 
     @staticmethod

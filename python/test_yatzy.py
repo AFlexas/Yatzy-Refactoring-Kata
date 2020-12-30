@@ -17,7 +17,7 @@ def test_yatzy_scores_50():
         assert expected == actual
         assert 50 == Yatzy.yatzy([6,6,6,6,6])
         assert 0 == Yatzy.yatzy([6,6,6,6,3])
-        # assert 50 == Yatzy.yatzy([7,7,7,7,7])
+        assert 50 == Yatzy.yatzy([50,50,50,50,50])
 
 def test_1s():
         assert Yatzy.ones(1,2,3,4,5) == 1
@@ -64,6 +64,7 @@ def test_two_Pair():
         assert 16 == Yatzy.two_pair(3,3,5,4,5)
         assert 18 == Yatzy.two_pair(3,3,6,6,6)
         assert 0 == Yatzy.two_pair(3,3,6,5,4)
+        # assert 32 == Yatzy.two_pair(7,7,2,2,6,8,9,9) conseguir pasar este caso test
   
 
 def test_three_of_a_kind():
@@ -83,6 +84,7 @@ def test_smallStraight():
         assert 15 == Yatzy.smallStraight(1,2,3,4,5)
         assert 15 == Yatzy.smallStraight(2,3,4,5,1)
         assert 0 == Yatzy.smallStraight(1,2,2,4,5)
+        assert 15 == Yatzy.smallStraight(2,1,3,5,4)
   
 
 def test_largeStraight():
