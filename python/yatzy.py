@@ -13,7 +13,7 @@ class Yatzy:
 
     @staticmethod
     def yatzy(dice):
-        counts = [0]*(len(dice)+1)
+        counts = [0]*(len(dice)+1) # es lo mismo que poner [0]*6 pero como COÑO HAGO QUE NO SE LIMITE A DADOS DE SOLO 6 
         for die in dice:
             counts[die-1] += 1
         for i in range(len(counts)):
@@ -85,19 +85,21 @@ class Yatzy:
         return sum
     
     @staticmethod
-    def score_pair(*dados):
-        counts = [0]*6
-        for caras in dados:
-            counts[caras-1] += 1
+    def score_pair(*caras):
+        counts = [0]*max(valor)
+        for valor in caras:
+            counts[valor-1] += 1
         # counts[d2-1] += 1
         # counts[d3-1] += 1
         # counts[d4-1] += 1
         # counts[d5-1] += 1
         at = 0
-        for at in range(6):
-            if (counts[6-at-1] == 2):
-                return (6-at)*2
+        for at in range(8):
+            if (counts[8-at-1] == 2):
+                return (8-at)*2
         return 0
+        # Aqui simplemente he cambiado uno a dados para que no sea limitado, pero no acabo de entender como funciona, tiene que haber una mejor manera
+        # o almenos mas bonita
     
     @staticmethod
     def two_pair( d1,  d2,  d3,  d4,  d5):
@@ -120,13 +122,14 @@ class Yatzy:
             return 0
     
     @staticmethod
-    def four_of_a_kind( _1,  _2,  d3,  d4,  d5):
+    def four_of_a_kind(*dado):
         tallies = [0]*6
-        tallies[_1-1] += 1
-        tallies[_2-1] += 1
-        tallies[d3-1] += 1
-        tallies[d4-1] += 1
-        tallies[d5-1] += 1
+        for caras in dado:
+            tallies[caras-1] += 1
+        # tallies[_2-1] += 1
+        # tallies[d3-1] += 1
+        # tallies[d4-1] += 1
+        # tallies[d5-1] += 1
         for i in range(6):
             if (tallies[i] >= 4):
                 return (i+1) * 4
