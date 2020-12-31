@@ -2,26 +2,17 @@ class Yatzy:
 
     @staticmethod
     def chance(*dados):
-        # PONIENDO EL * PERMITE LA ENTRADA DE TODOS LOS ELEMENTOS QUE VENGAN DE INPUT
-        # total = 0
-        # total += d1
-        # total += d2
-        # total += d3
-        # total += d4
-        # total += d5   
         return sum(dados)
 
     @staticmethod
     def yatzy(dados):
-        counts = [0]*(max(dados)) # es lo mismo que poner [0]*6 pero como COÑO HAGO QUE NO SE LIMITE A DADOS DE SOLO 6 
+        counts = [0]*(max(dados)) 
         for valor in dados:
             counts[valor-1] += 1
         for i in range(max(dados)):
             if counts[i] == (len(dados)):
                 return 50
         return 0
-    # en este refactor simplemente he cambiado la linea 20 en vez de "if counts[i] == 5", si se pone eso solo se aplicaria sobre un yatzy de 5
-
     
     @staticmethod
     def ones(*dados):
@@ -33,7 +24,6 @@ class Yatzy:
                 pass
         return sum_of_ones
     
-
     @staticmethod
     def twos(*dados):
         sum_of_twos = 0
@@ -50,7 +40,6 @@ class Yatzy:
                 sum_of_three = sum_of_three + 3
         return sum_of_three
     
-
     def __init__(self, d1, d2, d3, d4, d5):
         self.dice = [0]*5
         self.dice[0] = d1
@@ -89,27 +78,17 @@ class Yatzy:
         counts = [0]*(max(dados))
         for valor in dados:
             counts[valor-1] += 1
-        # counts[d2-1] += 1
-        # counts[d3-1] += 1
-        # counts[d4-1] += 1
-        # counts[d5-1] += 1
         at = 0
         for at in range(max(dados)):
             if (counts[(max(dados))-at-1] == 2):
                 return ((max(dados))-at)*2
         return 0
-        # Aqui simplemente he cambiado uno a dados para que no sea limitado, pero no acabo de entender como funciona, tiene que haber una mejor manera
-        # o almenos mas bonita
     
     @staticmethod
     def two_pair(*dados):
         counts = [0]*(max(dados))
         for valor in dados:
             counts[valor-1] += 1
-        # counts[d2-1] += 1
-        # counts[d3-1] += 1
-        # counts[d4-1] += 1
-        # counts[d5-1] += 1
         n = 0
         score = 0
         for i in range(max(dados)):
@@ -121,16 +100,12 @@ class Yatzy:
             return score * 2
         else:
             return 0
-    # Tengo una disputa filosofica aqui, si hay mas de dos parejas esto peta, no que como hacerlo
+
     @staticmethod
     def four_of_a_kind(*dados):
         tallies = [0]*(max(dados))
         for valor in dados:
             tallies[valor-1] += 1
-        # tallies[_2-1] += 1
-        # tallies[d3-1] += 1
-        # tallies[d4-1] += 1
-        # tallies[d5-1] += 1
         for i in range(max(dados)):
             if (tallies[i] >= 4):
                 return (i+1) * 4
@@ -139,19 +114,14 @@ class Yatzy:
 
     @staticmethod
     def three_of_a_kind(*dados):
-        t = [0]*(max(dados))
+        tallies = [0]*(max(dados))
         for valor in dados:
-
-            t[valor-1] += 1
-        # t[d2-1] += 1
-        # t[d3-1] += 1
-        # t[d4-1] += 1
-        # t[d5-1] += 1
+            tallies[valor-1] += 1
         for i in range(max(dados)):
-            if (t[i] >= 3):
+            if (tallies[i] >= 3):
                 return (i+1) * 3
         return 0
-        # refactorizar los nombres de las variables, también por ejemplo la t de esta función
+        
     
 
     @staticmethod
@@ -159,10 +129,6 @@ class Yatzy:
         tallies = [0]*(max(dados))
         for valor in dados:
             tallies[valor-1] += 1
-        # tallies[d2-1] += 1
-        # tallies[d3-1] += 1
-        # tallies[d4-1] += 1
-        # tallies[d5-1] += 1
         if (tallies[0] == 1 and
             tallies[1] == 1 and
             tallies[2] == 1 and
@@ -177,11 +143,6 @@ class Yatzy:
         tallies = [0]*(max(dados))
         for valor in dados:
             tallies[valor-1] += 1
-        # tallies[d1-1] += 1
-        # tallies[d2-1] += 1
-        # tallies[d3-1] += 1
-        # tallies[d4-1] += 1
-        # tallies[d5-1] += 1
         if (tallies[1] == 1 and
             tallies[2] == 1 and
             tallies[3] == 1 and
@@ -193,34 +154,24 @@ class Yatzy:
 
     @staticmethod
     def fullHouse(*dados):
-        tallies = []
         pareja = False
-        i = 0
         valor_pareja = 0
         trio = False
         valor_trio = 0
-        
+        tallies = [0]*(max(dados))
         for valor in dados:
-            tallies = [0]*(max(dados))
             tallies[valor-1] += 1
-    
-        # tallies[d2-1] += 1
-        # tallies[d3-1] += 1
-        # tallies[d4-1] += 1
-        # tallies[d5-1] += 1
 
         for i in range(max(dados)):
             if (tallies[i] == 2): 
                 pareja = True
                 valor_pareja = i+1
             
-
         for i in range(max(dados)):
-            if (tallies[i] == 6): 
+            if (tallies[i] == 3): 
                 trio = True
                 valor_trio = i+1
             
-
         if (pareja and trio):
             return valor_pareja * 2 + valor_trio * 3
         else:
