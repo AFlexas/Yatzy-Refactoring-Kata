@@ -60,7 +60,6 @@ class Yatzy:
     def fives(self):
         sum = 0
         for at in range(5):
-        # (len(self.dice)): 
             if (self.dice[at] == 5):
                 sum = sum + 5
         return sum
